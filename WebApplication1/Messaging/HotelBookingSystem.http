@@ -1,0 +1,33 @@
+@HotelBookingSystem_HostAddress = http://localhost:5299
+
+POST http://localhost:5299/auth/login
+Content-Type: application/json
+
+{
+  "email": "benmassoudamohamed1@gmail.com",
+  "password": "massouda123"
+}
+
+> {%
+  client.global.set("auth_token", response.body)
+%}
+
+###
+
+GET {{HotelBookingSystem_HostAddress}}/auth/current
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+GET {{HotelBookingSystem_HostAddress}}/chats
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+GET {{HotelBookingSystem_HostAddress}}/chats/e9414213-82da-4cc0-921d-dd481923e611/messages
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
